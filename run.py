@@ -40,7 +40,7 @@ if load_existing_model:
     model_spec.loader.exec_module(model)
     
     # Load the parameters of the model
-    params = torch.load(model_path + '/params_' + str(i_start) + '.pt')
+    params = torch.load(model_path + '/params_' + str(i_start) + '.pt', weights_only=False)
     # But certain parameters (like total nr of training iterations) may need to be copied from the current set of parameters
     new_params = {'train_it':40000}
     # Update those in params
@@ -50,7 +50,7 @@ if load_existing_model:
     # Create a new tem model with the loaded parameters
     tem = model.Model(params)
     # Load the model weights after training
-    model_weights = torch.load(model_path + '/tem_' + str(i_start) + '.pt')
+    model_weights = torch.load(model_path + '/tem_' + str(i_start) + '.pt', weights_only=False)
     # Set the model weights to the loaded trained model weights
     tem.load_state_dict(model_weights)
     

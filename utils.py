@@ -166,5 +166,7 @@ def make_logger(run_path):
     handler.setFormatter(formatter)
     # Add the handlers to the logger
     logger.addHandler(handler)
+    # Also print to console
+    logger.addHandler(logging.StreamHandler())
     # Return the logger object
     return logger
